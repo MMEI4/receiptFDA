@@ -1,0 +1,12 @@
+{
+  "name": "receipt-reader",
+  "version": "1.0.0",
+  "description": "A simple OCR tool using Node.js and Tesseract.js",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "tesseract.js": "^7.0.0"
+  }
+}
