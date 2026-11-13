@@ -4,7 +4,7 @@ const path = require('path');
 const readline = require('readline');
 const {parseReceipt} = require('./parseReceipt');
 
-async function readReceipt(imagePath) {
+async function readReceipt(imagePath) { //OCR
   const { data } = await Tesseract.recognize(imagePath, "eng");
   return data.text
     .split('\n')
