@@ -18,7 +18,7 @@ const NOT_ITEM = /(sub\s*total|t?otal|tax|saving|reg(ular)?|change|cash|paid|net
 function parseReceipt(lines) {
     const result = [];
     for (const line of lines){
-        if (NOT_ITEM.test(line) || !ITEM_PRICE.test(line)) continue;
+        if (NOT_ITEM.test(line) || !ITEM_PRICE.test(line)) continue; // items contain price text
         result.push(cleanName(line));
     }
     return result.filter(Boolean);
