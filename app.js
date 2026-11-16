@@ -3,6 +3,8 @@ const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
 const {parseReceipt} = require('./parseReceipt');
+const { checkItems } = require("./openfda");
+
 
 async function readReceipt(imagePath) { //OCR
   const { data } = await Tesseract.recognize(imagePath, "eng");
@@ -10,6 +12,7 @@ async function readReceipt(imagePath) { //OCR
     .split('\n')
     .map(line => line.trim())
     .filter(Boolean);
+    
 }
 
 const receipts = path.join(__dirname, 'sampleReceipts'); 
@@ -20,8 +23,9 @@ rl.question(`pick receipt (0-${images.length-1}): `, async (i) => {
     rl.close();
     const receipt = path.join(receipts, images[i]);
     
-    const lines = await readReceipt(receipt);
-    const result = parseReceipt(lines);
+    const lines = await readReceipt(receipt); //string
+    const result = parseReceipt(lines); //array
+    //const checks = await checkItems(result); //inprogress
 
     console.log(result);
 });
