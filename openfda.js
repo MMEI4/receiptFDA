@@ -12,10 +12,16 @@ async function checkItem(item){
     const terms = buildTerms(item);
 
     const search = `product_description:(${terms.join(" AND ")}) AND status:"Ongoing"`;
-    const params = new URLSearchParams({search, limit: "5", sort: "report_date:desc"}); //https://open.fda.gov/apis/query-parameters/
+    const params = new URLSearchParams({search, limit: "1", sort: "report_date:desc"}); //https://open.fda.gov/apis/query-parameters/
     if (process.env.OPENFDA_API_KEY) params.set("api_key", process.env.OPENFDA_API_KEY);
     
-    console.log(params);
+    try {
+        const res = await fetch(`${BASE}?${params}`);
+        const json = await res.json();
+        console.log(json);
+    } catch (err) {
+        return { item, query: search, status: "error", error: err.message, total: 0, recalls: [] };
+    }
 }
 
 async function checkItems(items){
@@ -26,5 +32,7 @@ async function checkItems(items){
     }
     return payloads;
 }
+
+//checkItem("egg")
 
 module.exports = {checkItem, checkItems};
