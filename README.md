@@ -3,9 +3,7 @@
 install all packages
 npm install
 
-put receipt photos (JPG or PNG) in the sampleReceipts/ folder (needs to be good quality)
+put receipt photos (JPG or PNG) in the sampleReceipts/ folder (no longer necessary)
 
 run 
-node app.js
-
-select receipt by typing its index
+node server.js

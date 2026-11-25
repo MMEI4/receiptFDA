@@ -23,6 +23,7 @@ MANIFEST
 venv/
 ENV/
 env/
+.env/
 .venv/
 .pytest_cache/
 .mypy_cache/

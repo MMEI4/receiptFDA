@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt Recall Checker</title>
+</head>
+<body>
+    <main>
+        <h1>Receipt Recall Checker</h1>
+
+        <form id="receipt-form">
+            <div>
+                <label for="state-select">State:</label>
+                <select id="state-select" name="state">
+                    <option value="">All States (No Filter)</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="receipt-input">Upload Receipt:</label>
+                <input type="file" id="receipt-input" name="receipt" accept="image/*" required>
+            </div>
+
+            <button type="submit">Check for Recalls</button>
+        </form>
+
+        <section id="results" aria-live="polite"></section>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+</body>
+</html>
