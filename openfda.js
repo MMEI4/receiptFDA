@@ -18,7 +18,20 @@ async function checkItem(item){
     try {
         const res = await fetch(`${BASE}?${params}`);
         const json = await res.json();
-        console.log(json);
+        //console.log(json);
+        return {
+            item,
+            query: search,
+            total: json.meta?.results?.total,
+            recalls: json.results.map(r => ({
+                recallNumber: r.recall_number,
+                classification: r.classification,
+                product: r.product_description,
+                reason: r.reason_for_recall,
+                firm: r.recalling_firm,
+                reportDate: r.report_date,
+            })),
+        };
     } catch (err) {
         return { item, query: search, status: "error", error: err.message, total: 0, recalls: [] };
     }
@@ -33,6 +46,6 @@ async function checkItems(items){
     return payloads;
 }
 
-//checkItem("egg")
+//checkItem("banana")
 
 module.exports = {checkItem, checkItems};
